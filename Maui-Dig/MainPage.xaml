@@ -1,9 +1,27 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui_Dig.MainPage"
              BackgroundColor="{DynamicResource SecondaryColor}">
-    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowDefinitions="50,*">
-        <Button GridLayout.Column="0" GridLayout.Row="0" Text="Query" Clicked="OnCounterClicked"/>
-        <ListView x:Name="resultView" GridLayout.Column="0" GridLayout.Row="1"/>
-    </Grid>
-</ContentPage>
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Settings" Padding="10">
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection>
+                        <EntryCell Placeholder="DNS Server"  />
+                        <SwitchCell Text="Recursive"/>
+                        <SwitchCell Text="Resolver cache"/>
+                        <SwitchCell Text="TCP only"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <ContentPage Title="MAUI DIG">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowDefinitions="50,*">
+                <Button GridLayout.Column="0" GridLayout.Row="0" Text="Query" Clicked="OnCounterClicked"/>
+                <Editor x:Name="resultText" GridLayout.Column="0" GridLayout.Row="1"/>
+            </Grid>
+        </ContentPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>
